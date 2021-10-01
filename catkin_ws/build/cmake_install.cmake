@@ -133,6 +133,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/metr4202/catkin_ws/build/gtest/cmake_install.cmake")
   include("/home/metr4202/catkin_ws/build/ximea_camera/cmake_install.cmake")
   include("/home/metr4202/catkin_ws/build/dynamixel_interface/cmake_install.cmake")
+  include("/home/metr4202/catkin_ws/build/my_dynamixel_project/cmake_install.cmake")
 
 endif()
 

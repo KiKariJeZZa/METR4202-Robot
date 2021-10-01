@@ -24,7 +24,7 @@ add_custom_target(_dynamixel_interface_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg" NAME_WE)
 add_custom_target(_dynamixel_interface_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "dynamixel_interface" "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg" "std_msgs/Header:dynamixel_interface/DataPort"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "dynamixel_interface" "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg" "dynamixel_interface/DataPort:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/ServoDiag.msg" NAME_WE)
@@ -52,7 +52,7 @@ _generate_msg_cpp(dynamixel_interface
 _generate_msg_cpp(dynamixel_interface
   "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg"
+  "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/dynamixel_interface
 )
 _generate_msg_cpp(dynamixel_interface
@@ -109,7 +109,7 @@ _generate_msg_eus(dynamixel_interface
 _generate_msg_eus(dynamixel_interface
   "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg"
+  "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/dynamixel_interface
 )
 _generate_msg_eus(dynamixel_interface
@@ -166,7 +166,7 @@ _generate_msg_lisp(dynamixel_interface
 _generate_msg_lisp(dynamixel_interface
   "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg"
+  "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/dynamixel_interface
 )
 _generate_msg_lisp(dynamixel_interface
@@ -223,7 +223,7 @@ _generate_msg_nodejs(dynamixel_interface
 _generate_msg_nodejs(dynamixel_interface
   "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg"
+  "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/dynamixel_interface
 )
 _generate_msg_nodejs(dynamixel_interface
@@ -280,7 +280,7 @@ _generate_msg_py(dynamixel_interface
 _generate_msg_py(dynamixel_interface
   "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg"
+  "/home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/dynamixel_interface
 )
 _generate_msg_py(dynamixel_interface

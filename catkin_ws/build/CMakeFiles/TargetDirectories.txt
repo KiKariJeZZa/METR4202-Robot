@@ -92,3 +92,10 @@
 /home/metr4202/catkin_ws/build/dynamixel_interface/CMakeFiles/geometry_msgs_generate_messages_eus.dir
 /home/metr4202/catkin_ws/build/dynamixel_interface/CMakeFiles/dynamixel_interface_generate_messages.dir
 /home/metr4202/catkin_ws/build/dynamixel_interface/CMakeFiles/_dynamixel_interface_generate_messages_check_deps_DataPorts.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/install/strip.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/install/local.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/install.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/list_install_components.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/rebuild_cache.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/edit_cache.dir
+/home/metr4202/catkin_ws/build/my_dynamixel_project/CMakeFiles/test.dir
