@@ -18,18 +18,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "dynamixel_interface/catkin_generated/ordered_paths.cmake"
   "dynamixel_interface/catkin_generated/package.cmake"
   "dynamixel_interface/cmake/dynamixel_interface-genmsg.cmake"
-  "my_dynamixel_project/catkin_generated/ordered_paths.cmake"
-  "my_dynamixel_project/catkin_generated/package.cmake"
   "ximea_camera/catkin_generated/package.cmake"
-  "/home/metr4202/catkin_ws/devel/share/dynamixel_interface/cmake/dynamixel_interface-msg-extras.cmake"
   "/home/metr4202/catkin_ws/devel/share/dynamixel_interface/cmake/dynamixel_interface-msg-paths.cmake"
-  "/home/metr4202/catkin_ws/devel/share/dynamixel_interface/cmake/dynamixel_interfaceConfig-version.cmake"
-  "/home/metr4202/catkin_ws/devel/share/dynamixel_interface/cmake/dynamixel_interfaceConfig.cmake"
   "/home/metr4202/catkin_ws/src/CMakeLists.txt"
   "/home/metr4202/catkin_ws/src/dynamixel_interface/CMakeLists.txt"
   "/home/metr4202/catkin_ws/src/dynamixel_interface/package.xml"
-  "/home/metr4202/catkin_ws/src/my_dynamixel_project/CMakeLists.txt"
-  "/home/metr4202/catkin_ws/src/my_dynamixel_project/package.xml"
   "/home/metr4202/catkin_ws/src/ximea_camera/CMakeLists.txt"
   "/home/metr4202/catkin_ws/src/ximea_camera/package.xml"
   "/opt/ros/noetic/share/catkin/cmake/all.cmake"
@@ -237,7 +230,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "gtest/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "ximea_camera/CMakeFiles/CMakeDirectoryInformation.cmake"
   "dynamixel_interface/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "my_dynamixel_project/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:

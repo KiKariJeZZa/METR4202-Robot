@@ -1,2 +1,2 @@
-dynamixel_interface:my_dynamixel_project:ximea_camera
+dynamixel_interface:ximea_camera
 -DCATKIN_DEVEL_PREFIX=/home/metr4202/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/metr4202/catkin_ws/install -G Unix Makefiles

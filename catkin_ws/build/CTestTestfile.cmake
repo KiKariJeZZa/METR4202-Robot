@@ -7,4 +7,3 @@
 subdirs("gtest")
 subdirs("ximea_camera")
 subdirs("dynamixel_interface")
-subdirs("my_dynamixel_project")

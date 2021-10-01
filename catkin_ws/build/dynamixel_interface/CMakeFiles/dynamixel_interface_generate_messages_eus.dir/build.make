@@ -67,8 +67,8 @@ dynamixel_interface/CMakeFiles/dynamixel_interface_generate_messages_eus: /home/
 
 /home/metr4202/catkin_ws/devel/share/roseus/ros/dynamixel_interface/msg/DataPorts.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/metr4202/catkin_ws/devel/share/roseus/ros/dynamixel_interface/msg/DataPorts.l: /home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg
-/home/metr4202/catkin_ws/devel/share/roseus/ros/dynamixel_interface/msg/DataPorts.l: /home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg
 /home/metr4202/catkin_ws/devel/share/roseus/ros/dynamixel_interface/msg/DataPorts.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/metr4202/catkin_ws/devel/share/roseus/ros/dynamixel_interface/msg/DataPorts.l: /home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPort.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/metr4202/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from dynamixel_interface/DataPorts.msg"
 	cd /home/metr4202/catkin_ws/build/dynamixel_interface && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/metr4202/catkin_ws/src/dynamixel_interface/msg/DataPorts.msg -Idynamixel_interface:/home/metr4202/catkin_ws/src/dynamixel_interface/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p dynamixel_interface -o /home/metr4202/catkin_ws/devel/share/roseus/ros/dynamixel_interface/msg
 
