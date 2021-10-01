@@ -1,0 +1,8 @@
+prefix=/home/metr4202/catkin_ws/install
+
+Name: ximea_camera
+Description: Description of ximea_camera
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
