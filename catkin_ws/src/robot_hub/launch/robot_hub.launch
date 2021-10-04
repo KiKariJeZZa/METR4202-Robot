@@ -1,5 +1,5 @@
 <launch>
     <!-- My Package launch file -->
-    <node pkg="robot_hub" type="main.py" name="ObiWan"  output="screen">
+    <node pkg="robot_hub" type="main.py" name="main_loop"  output="screen">
     </node>
 </launch>
