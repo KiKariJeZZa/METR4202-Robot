@@ -18,3 +18,6 @@ roslaunch aruco_detect aruco_detect.launch camera:=/ximea_cam image:=/image_raw
 roslaunch my_dynamixel_project dynamixel_interface_controller.launch
 ```
 5. Finally run the main code in robot_hub to begin robot functionality
+```
+rosrun robot_hub main.pi
+```
