@@ -6,7 +6,7 @@ Welcome to Team 7s METR4202 Robot Repository.
 
 1. Git clone this repository to your local directory
 2. Run the following in terminal 
-'''
-*roslaunch my_dynamixel_project dynamixel_interface_controller.launch*
-'''
+```
+roslaunch my_dynamixel_project dynamixel_interface_controller.launch
+```
 
