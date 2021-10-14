@@ -40,11 +40,11 @@ def move_servo(des_pos):
     state_str.header.stamp = rospy.Time.now()
     state_str.name = ['joint_1','joint_2','joint_3','joint_4']
     state_str.position = [des_pos[0],des_pos[1]+joint2_offset,des_pos[2],des_pos[3]]
-    state_str.velocity = [1,1,1,1]
+    state_str.velocity = [1.25,0.75,1,1]
     state_str.effort = []
     count = 0
     print("Moving to desired position")
-    while count < 50:
+    while count < 40:
         state_str.header.stamp = rospy.Time.now()
         # Send to topic
         servo_publisher.publish(state_str)
@@ -58,9 +58,29 @@ def zero_position():
     Function that returns the robot configuration to its zero position
     """
     print("Moving to zero position")
-    return np.array([0,0,0,0])
+    return np.array([0, 0, 0, 0])
+
+def zone_dropoff():
+    """
+    Function that returns the robot configuration for each drop off zone
+    """
+    Zone1 = np.array([1.8, -1, -0.8, 0])
+    Zone2 = np.array([-0.35, 1, 2, 0])
+    Zone3 = np.array([0.35, 1, 2, 0])
+    Zone4 = np.array([-1.8, -1, -0.8, 0])
+    return Zone3
+
+# ---------
+# Servo Limits
+# Joint1: +- 2.6
+# Joint2: -1.35
+# Joint3: -1.487
+# Joint4: No limits
+# ---------
 
 if __name__ == '__main__':
     move_servo(k.desired_angle_config(Slist, M, thetalist))
+    move_servo(zero_position())
+    move_servo(zone_dropoff())
     move_servo(zero_position())
     

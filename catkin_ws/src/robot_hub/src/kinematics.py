@@ -27,8 +27,8 @@ def desired_angle_config(Slist, M, thetalist):
     for i in range(220, 280):
         theta = i * np.pi / 180
         # T will be arbitrary for now
-        T = np.array([[np.cos(theta), -np.sin(theta), 0, 0.1],
-                    [np.sin(theta), np.cos(theta), 0, 0.03],
+        T = np.array([[np.cos(theta), -np.sin(theta), 0, 0.15],
+                    [np.sin(theta), np.cos(theta), 0, -0.01],
                     [0, 0, 1, 0],
                     [0, 0, 0, 1]])   
         outcome = mr.IKinSpace(Slist, M, T, thetalist, eomg, ev)
