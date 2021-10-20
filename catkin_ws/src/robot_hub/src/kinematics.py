@@ -27,7 +27,7 @@ def desired_angle_config(Slist, M, thetalist):
     for i in range(220, 280):
         theta = i * np.pi / 180
         # T will be arbitrary for now
-        T = np.array([[np.cos(theta), -np.sin(theta), 0, 0.15],
+        T = np.array([[np.cos(theta), -np.sin(theta), 0, 0.10],
                     [np.sin(theta), np.cos(theta), 0, -0.01],
                     [0, 0, 1, 0],
                     [0, 0, 0, 1]])   
@@ -55,3 +55,6 @@ def desired_angle_config(Slist, M, thetalist):
                         print(f'Joint1 Angle: {joint1}, Joint2 Angle: {joint2}, Joint3 Angle: {joint3}, Joint4 Angle: {joint4}')
                         return np.array([joint1, joint2, joint3, joint4])
                         break
+        else:
+            print("No solution found")
+            

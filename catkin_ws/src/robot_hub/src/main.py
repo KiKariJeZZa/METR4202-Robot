@@ -72,9 +72,6 @@ def zone_dropoff():
     Zone4 = np.array([-1.8, -1, -0.8, 0])
     return Zone3
 
-
-
-
 # ---------
 # Servo Limits
 # Joint1: +- 2.6
@@ -84,9 +81,13 @@ def zone_dropoff():
 # ---------
 
 if __name__ == '__main__':
-    #move_servo(k.desired_angle_config(Slist, M, thetalist))
-    #move_servo(zero_position())
+    move_servo(k.desired_angle_config(Slist, M, thetalist))
+    move_servo(zero_position())
     #move_servo(zone_dropoff())
     #move_servo(zero_position())
-    print(cam.listener())
+    #while 1:
+        #if cam.turntable_move():
+            #print("Moving")
+        #else: 
+            #print("Not moving")
     
