@@ -13,6 +13,7 @@ from sensor_msgs.msg import JointState
 from std_msgs.msg import Header
 import numpy as np
 import kinematics as k
+import stepper as step
 
 # Declare variables for the robot
 joint2_offset = 1.5
@@ -44,7 +45,7 @@ def move_servo(des_pos):
     state_str.effort = []
     count = 0
     print("Moving to desired position")
-    while count < 40:
+    while count < 50:
         state_str.header.stamp = rospy.Time.now()
         # Send to topic
         servo_publisher.publish(state_str)
@@ -69,6 +70,8 @@ def zone_dropoff():
     Zone3 = np.array([0.35, 1, 2, 0])
     Zone4 = np.array([-1.8, -1, -0.8, 0])
     return Zone3
+
+
 
 # ---------
 # Servo Limits
