@@ -11,6 +11,11 @@ from fiducial_msgs.msg import FiducialTransformArray
 import numpy as np
 import cv2
 
+def colour_detection():
+    """
+    Determines which colour the block is and which zone it needs to be dropped at
+    """
+    return 0
 
 def turntable_move():
     """
@@ -27,6 +32,7 @@ def turntable_move():
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
     x_array[i] = data.transforms[0].transform.translation.x
     i = 0
+    # Check if error is small enough to see that it has stopped moving
     if abs(x_array[1] - x_array[0]) < 0.0001:
         return False
     else:
