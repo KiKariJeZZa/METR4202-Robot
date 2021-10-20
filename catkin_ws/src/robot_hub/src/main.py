@@ -71,7 +71,7 @@ def zone_dropoff():
     Zone2 = np.array([-0.35, 1, 2, 0])
     Zone3 = np.array([0.35, 1, 2, 0])
     Zone4 = np.array([-1.8, -1, -0.8, 0])
-    return Zone3
+    return Zone2
 
 # ---------
 # Servo Limits
@@ -85,14 +85,14 @@ if __name__ == '__main__':
     #blocks_left = 4
     #while blocks != 0:
         #blocks_left = blocks_left - 1
-    move_servo(k.desired_angle_config(Slist, M, thetalist))
-    step.close_stepper()
-    rate = rospy.Rate(0.5) # 10hz
-    rate.sleep()
-    move_servo(zero_position())
+    #move_servo(k.desired_angle_config(Slist, M, thetalist))
+    #step.close_stepper()
+    #rate = rospy.Rate(0.5) # 10hz
+    #rate.sleep()
+    #move_servo(zero_position())
     move_servo(zone_dropoff())
-    step.open_stepper()
-    rate.sleep()
+    #step.open_stepper()
+    #rate.sleep()
     move_servo(zero_position())
     #while 1:
         #if cam.turntable_move():
