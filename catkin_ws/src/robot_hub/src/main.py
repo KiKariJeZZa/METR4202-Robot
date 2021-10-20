@@ -14,6 +14,7 @@ from std_msgs.msg import Header
 import numpy as np
 import kinematics as k
 import stepper as step
+import camera as cam
 
 # Declare variables for the robot
 joint2_offset = 1.5
@@ -73,6 +74,7 @@ def zone_dropoff():
 
 
 
+
 # ---------
 # Servo Limits
 # Joint1: +- 2.6
@@ -82,8 +84,9 @@ def zone_dropoff():
 # ---------
 
 if __name__ == '__main__':
-    move_servo(k.desired_angle_config(Slist, M, thetalist))
-    move_servo(zero_position())
-    move_servo(zone_dropoff())
-    move_servo(zero_position())
+    #move_servo(k.desired_angle_config(Slist, M, thetalist))
+    #move_servo(zero_position())
+    #move_servo(zone_dropoff())
+    #move_servo(zero_position())
+    print(cam.listener())
     

@@ -1,7 +1,13 @@
 #! /usr/bin/env python
 
-import serial
+# ------------------------------
+# Functions that open and close the gripper
+# via serial communication with an arduino
+#
+# Written by Nadia Regli
+# ------------------------------
 
+import serial
 
 def open_stepper():
     ser = serial.Serial('/dev/ttyACM0', 9600)
