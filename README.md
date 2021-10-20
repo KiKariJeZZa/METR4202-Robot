@@ -9,15 +9,19 @@ Welcome to Team 7s METR4202 Robot Repository.
 ```
 echo 0 | sudo tee /sys/module/usbcore/parameters/usbfs_memory_mb
 ```
-3. Run the following to start up camera and tag detection
+3. Run the following to start up the camera
+```
+roslaunch ximea_ros_cam example_cam.launch
+```
+4. Run the following to start up tag detection
 ```
 roslaunch aruco_detect aruco_detect.launch camera:=/ximea_cam image:=/image_raw
 ```
-4. Run the following in terminal to start up servos
+5. Run the following in terminal to start up servos
 ```
 roslaunch my_dynamixel_project dynamixel_interface_controller.launch
 ```
-5. Finally run the main code in robot_hub to begin robot functionality
+6. Finally run the main code in robot_hub to begin robot functionality
 ```
 rosrun robot_hub main.py
 ```
