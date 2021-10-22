@@ -33,7 +33,7 @@ def move_servo(des_pos):
     Function that takes desired joint state information and publishes
     to the topic  
     """
-    rospy.init_node('main_loop')
+    #rospy.init_node('main_robot_loop',anonymous=True)
     servo_publisher = rospy.Publisher('/desired_joint_states', JointState, queue_size = 10)
     rate = rospy.Rate(10) # 10hz
     # Build the required string needed to send to the topic
@@ -82,18 +82,22 @@ def zone_dropoff():
 # ---------
 
 if __name__ == '__main__':
+    while not rospy.is_shutdown():
+        if not cam.turntable_move():
+            move_servo(k.desired_angle_config(Slist, M, thetalist))
+            move_servo(zero_position())
     #blocks_left = 4
     #while blocks != 0:
         #blocks_left = blocks_left - 1
-    #move_servo(k.desired_angle_config(Slist, M, thetalist))
+        #move_servo(k.desired_angle_config(Slist, M, thetalist))
     #step.close_stepper()
     #rate = rospy.Rate(0.5) # 10hz
     #rate.sleep()
-    #move_servo(zero_position())
-    move_servo(zone_dropoff())
+        #move_servo(zero_position())
+    #move_servo(zone_dropoff())
     #step.open_stepper()
     #rate.sleep()
-    move_servo(zero_position())
+    #move_servo(zero_position())
     #while 1:
         #if cam.turntable_move():
             #print("Moving")

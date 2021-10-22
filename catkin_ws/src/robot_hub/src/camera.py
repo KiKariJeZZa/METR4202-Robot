@@ -26,14 +26,14 @@ def turntable_move():
     i = 0
     x_array = [0, 0]
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
-    print(data.transforms[0].transform.translation.x)
-    x_array[i] = data.transforms[0].transform.translation.x
+    print(data.transforms[0].transform.translation.y)
+    x_array[i] = data.transforms[0].transform.translation.y
     i = 1
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
-    x_array[i] = data.transforms[0].transform.translation.x
+    x_array[i] = data.transforms[0].transform.translation.y
     i = 0
     # Check if error is small enough to see that it has stopped moving
-    if abs(x_array[1] - x_array[0]) < 0.0001:
+    if abs(x_array[1] - x_array[0]) < 0.0002:
         return False
     else:
         return True
@@ -42,9 +42,9 @@ def closest_block():
     """
     Logic that returns the closest block to the robot
     """
-    rospy.init_node('closest_block')
+    #rospy.init_node('closest_block')
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
-    if len(data.transforms) == 4:
+    if len(data.transforms) == 1:
         x_array = [0, 0, 0, 0]
         x_array[0] = data.transforms[0].transform.translation.x
         x_array[1] = data.transforms[1].transform.translation.x
@@ -57,11 +57,21 @@ def closest_block():
         y = data.transforms[min_index].transform.translation.y
         z = data.transforms[min_index].transform.translation.z
         return x, y, z
+        
+def get_xyz():
+    #rospy.init_node('closest_xyz', anonymous=True)
+    data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
+    x = data.transforms[0].transform.translation.x
+    y = data.transforms[0].transform.translation.y
+    z = data.transforms[0].transform.translation.z
+    print(x,y,z)
+    return x, y, z
 
 if __name__ == '__main__':
     while 1:
+        get_xyz()
         #if turntable_move():
-        #    print("Moving")
+            #print("Moving")
         #else: 
-        #    print("Not moving")
-        print(closest_block())
+            #print("Not moving")
+        #print(closest_block())

@@ -10,6 +10,30 @@
 import modern_robotics as mr
 import numpy as np
 import rospy
+import camera as cam
+
+T0_1 = np.array([[1, 0, 0, 0.08],
+            [0, 1, 0, 0.94],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]])
+M = np.array([[1, 0, 0, 0.0565],
+            [0, 1, 0, 0.205],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]])
+Slist = np.array([[0, 1, 0, 0, 0, 0],
+                [0, 0, 1, 0.03, 0, 0],
+                [0, 0, 1, 0.12, 0, 0],
+                [1, 0, 0, 0, 0, -0.205]]).T
+thetalist = np.array([0, 0, 0, 0])
+
+def block_transformation(x, y, z):
+    T1_2 = np.array([[1, 0, 0, -y],
+            [0, 1, 0, -z],
+            [0, 0, 1, 0], #-x
+            [0, 0, 0, 1]])
+    print(np.dot(T0_1,T1_2))
+    return np.dot(T0_1,T1_2)
+    
 
 def end_effector_pos(M, Slist, thetalist):
     """
@@ -17,19 +41,16 @@ def end_effector_pos(M, Slist, thetalist):
     """
     return FKinSpace(M, Slist, thetalist)
 
-def desired_angle_config(Slist, M, thetalist):
-    """
-    Returns an array of desired joint configurations for the robot to move to
-    """
+def newton_raphson(min_ang, max_ang, array):
     # Set initial error tolerances
-    eomg = 0.001
-    ev = 0.001
-    for i in range(250, 280):
+    eomg = 0.01
+    ev = 0.01
+    # T will be arbitrary for now
+    for i in range(min_ang, max_ang):
         theta = i * np.pi / 180
-        # T will be arbitrary for now
-        T = np.array([[np.cos(theta), -np.sin(theta), 0, 0.15],
-                    [np.sin(theta), np.cos(theta), 0, 0.02],
-                    [0, 0, 1, 0],
+        T = np.array([[np.cos(theta), -np.sin(theta), 0, array[0][3]],
+                    [np.sin(theta), np.cos(theta), 0, array[1][3]],
+                    [0, 0, 1, array[2][3]],
                     [0, 0, 0, 1]])   
         outcome = mr.IKinSpace(Slist, M, T, thetalist, eomg, ev)
         joint1 = np.degrees(outcome[0][0])
@@ -55,4 +76,30 @@ def desired_angle_config(Slist, M, thetalist):
                 break
         else:
             print("No solution found")
+
+def desired_angle_config(Slist, M, thetalist):
+    """
+    Returns an array of desired joint configurations for the robot to move to
+    """
+    x,y,z = cam.get_xyz()
+    array = block_transformation(x,y,z)
+    print(array[0][3])
+    if array[0][3] >= 0.18:
+        return newton_raphson(275,290,array)
+    if array[0][3] >= 0.15:
+        print("I am greater than 15")
+        return newton_raphson(270,280,array)
+    if array[0][3] < 0.13:
+        print("I am less than 15")
+        return newton_raphson(240,250, array)
+    if array[0][3] < 0.15:
+        return newton_raphson(260, 270, array)
+    
+
+
+if __name__ == '__main__':
+    #x,y,z = cam.get_xyz()
+    #print(block_transformation(x,y,z))
+    desired_angle_config(Slist, M, thetalist)
+    #desired_angle_config(Slist,M,thetalist, block_transformation(x,y,z))
             
