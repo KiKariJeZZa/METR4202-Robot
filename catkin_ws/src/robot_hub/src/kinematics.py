@@ -27,9 +27,13 @@ Slist = np.array([[0, 1, 0, 0, 0, 0],
 thetalist = np.array([0, 0, 0, 0])
 
 def block_transformation(x, y, z):
+    """
+    Function that returns the transformation matrix from the camerae
+    to the block
+    """
     T1_2 = np.array([[1, 0, 0, -y],
             [0, 1, 0, -z],
-            [0, 0, 1, 0], #-x
+            [0, 0, 1, x], #-x
             [0, 0, 0, 1]])
     print(np.dot(T0_1,T1_2))
     return np.dot(T0_1,T1_2)
@@ -42,6 +46,10 @@ def end_effector_pos(M, Slist, thetalist):
     return FKinSpace(M, Slist, thetalist)
 
 def newton_raphson(min_ang, max_ang, array):
+    """
+    Function that finds the desired angle configuration of the end effector
+    to pick up the block
+    """
     # Set initial error tolerances
     eomg = 0.01
     ev = 0.01
@@ -72,10 +80,12 @@ def newton_raphson(min_ang, max_ang, array):
                 if -0.0001 <= joint4 <= 0.0001:
                     joint4 = 0
                 print(f'Joint1 Angle: {joint1}, Joint2 Angle: {joint2}, Joint3 Angle: {joint3}, Joint4 Angle: {joint4}')
-                return np.array([joint1, joint2, joint3, joint4])
+                return np.array([joint1, joint2, joint3, joint4, 1, 0.75, 0.75, 0.75])
                 break
         else:
             print("No solution found")
+            continue
+        return np.array([0, 0, 0, 0, 1, 0.75, 0.75, 0.75])
 
 def desired_angle_config(Slist, M, thetalist):
     """
@@ -88,12 +98,12 @@ def desired_angle_config(Slist, M, thetalist):
         return newton_raphson(275,290,array)
     if array[0][3] >= 0.15:
         print("I am greater than 15")
-        return newton_raphson(270,280,array)
+        return newton_raphson(260,275,array)
     if array[0][3] < 0.13:
         print("I am less than 15")
         return newton_raphson(240,250, array)
     if array[0][3] < 0.15:
-        return newton_raphson(260, 270, array)
+        return newton_raphson(250,260, array)
     
 
 
