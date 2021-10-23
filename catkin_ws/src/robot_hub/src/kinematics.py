@@ -12,11 +12,11 @@ import numpy as np
 import rospy
 import camera as cam
 
-T0_1 = np.array([[1, 0, 0, 0.08],
-            [0, 1, 0, 0.94],
+T0_1 = np.array([[1, 0, 0, 0.169],
+            [0, 1, 0, 0.92],
             [0, 0, 1, 0],
             [0, 0, 0, 1]])
-M = np.array([[1, 0, 0, 0.0565],
+M = np.array([[1, 0, 0, 0.09],
             [0, 1, 0, 0.205],
             [0, 0, 1, 0],
             [0, 0, 0, 1]])
@@ -28,7 +28,7 @@ thetalist = np.array([0, 0, 0, 0])
 
 def block_transformation(x, y, z):
     """
-    Function that returns the transformation matrix from the camerae
+    Function that returns the transformation matrix from the camera
     to the block
     """
     T1_2 = np.array([[1, 0, 0, -y],
@@ -58,7 +58,7 @@ def newton_raphson(min_ang, max_ang, array):
         theta = i * np.pi / 180
         T = np.array([[np.cos(theta), -np.sin(theta), 0, array[0][3]],
                     [np.sin(theta), np.cos(theta), 0, array[1][3]],
-                    [0, 0, 1, array[2][3]],
+                    [0, 0, 1, array[2][3]], #array[2][3]
                     [0, 0, 0, 1]])   
         outcome = mr.IKinSpace(Slist, M, T, thetalist, eomg, ev)
         joint1 = np.degrees(outcome[0][0])
@@ -85,25 +85,24 @@ def newton_raphson(min_ang, max_ang, array):
         else:
             print("No solution found")
             continue
-        return np.array([0, 0, 0, 0, 1, 0.75, 0.75, 0.75])
+    return np.array([0,0,0,0,0,0,0,0])
 
 def desired_angle_config(Slist, M, thetalist):
     """
     Returns an array of desired joint configurations for the robot to move to
     """
-    x,y,z = cam.get_xyz()
+    x,y,z = cam.closest_block()
     array = block_transformation(x,y,z)
-    print(array[0][3])
     if array[0][3] >= 0.18:
-        return newton_raphson(275,290,array)
+        return newton_raphson(280,310,array)
     if array[0][3] >= 0.15:
         print("I am greater than 15")
-        return newton_raphson(260,275,array)
+        return newton_raphson(275,300,array)
     if array[0][3] < 0.13:
         print("I am less than 15")
-        return newton_raphson(240,250, array)
+        return newton_raphson(260,280, array)
     if array[0][3] < 0.15:
-        return newton_raphson(250,260, array)
+        return newton_raphson(265,295, array)
     
 
 

@@ -69,17 +69,25 @@ def zero_position():
     print("Moving to zero position")
     return np.array([0, 0, 0, 0, 0.25, 1, 1, 1])
 
-def zone_dropoff():
+def zone_dropoff(colour):
     """
     Function that returns the robot configuration for each drop off zone
     depending on the colour of the block
     """
-    colour = cam.colour_detection()
-    Zone1 = np.array([1.8, -1, -0.8, 0])
-    Zone2 = np.array([-0.35, 1, 2, 0])
-    Zone3 = np.array([0.35, 1, 2, 0])
-    Zone4 = np.array([-1.8, -1, -0.8, 0])
-    return Zone2
+    zone1 = np.array([1.8, -0.8, -0.8, 0,1.5, 0.75, 0.5, 0.75])
+    zone2 = np.array([-0.35, 1, 2, 0,1.5, 0.75, 0.75, 0.75])
+    zone3 = np.array([0.35, 1, 2, 0,1.5, 0.75, 0.75, 0.75])
+    zone4 = np.array([-1.8, -0.8, -0.8, 0,1.5, 0.75, 0.75, 0.75])
+    if colour == 1: #red
+        return zone1
+    if colour == 2: #yellow
+        return zone2
+    if colour == 3: #green
+        return zone3
+    if colour == 4: #blue
+        return zone4
+    else:
+        return zone2
 
 # ---------
 # Servo Limits
@@ -92,8 +100,17 @@ def zone_dropoff():
 if __name__ == '__main__':
     while not rospy.is_shutdown():
         if not cam.turntable_move():
-            move_servo(trajectory_message(k.desired_angle_config(Slist, M, thetalist)))
-            move_servo(trajectory_message(zero_position()))
+            #move_servo(trajectory_message(k.desired_angle_config(Slist, M, thetalist)))
+            print("Closing...")
+            step.close_stepper()
+            rate = rospy.Rate(0.5) # 10hz
+            rate.sleep()
+            #move_servo(trajectory_message(zero_position()))
+            #move_servo(trajectory_message(zone_dropoff(1)))
+            print("Opening...")
+            step.open_stepper()
+            rate.sleep()
+            #move_servo(trajectory_message(zero_position()))
     #blocks_left = 4
     #while blocks != 0:
         #blocks_left = blocks_left - 1
@@ -106,9 +123,3 @@ if __name__ == '__main__':
     #step.open_stepper()
     #rate.sleep()
     #move_servo(zero_position())
-    #while 1:
-        #if cam.turntable_move():
-            #print("Moving")
-        #else: 
-            #print("Not moving")
-    
