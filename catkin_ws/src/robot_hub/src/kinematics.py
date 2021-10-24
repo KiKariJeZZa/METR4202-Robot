@@ -16,7 +16,7 @@ from scipy.spatial.transform import Rotation as R
 
 # Declare robot variables
 T0_1 = np.array([[1, 0, 0, 0.147],
-            [0, 1, 0, 1.01], #0.88 for demo
+            [0, 1, 0, 0.92], #0.88 for demo
             [0, 0, 1, 0],
             [0, 0, 0, 1]])
 M = np.array([[1, 0, 0, 0.09],
@@ -56,7 +56,7 @@ def newton_raphson(min_ang, max_ang, array, ee_rotation):
     # Set initial error tolerances
     eomg = 0.005
     ev = 0.005
-    # T will be arbitrary for now
+    # Check all posibble angles the block can be picked up with
     for i in range(min_ang, max_ang):
         theta = i * np.pi / 180
         T = np.array([[np.cos(theta), -np.sin(theta), 0, array[0][3]],
@@ -99,9 +99,11 @@ def desired_angle_config(Slist, M, thetalist):
     r = R.from_quat([x_q, y_q, z_q, w_q])
     rotation = r.as_euler('zyx', degrees=True)
     rotation_rad = (rotation[0] * np.pi / 180) % np.pi/2
+    # Check rotation is correct
     if rotation_rad > np.pi/4:
         rotation_rad = -rotation_rad % np.pi/4
     array = block_transformation(x,y,z)
+    # Optimisation time code
     if array[0][3] >= 0.18:
         return newton_raphson(280,310,array, -rotation_rad)
     if array[0][3] >= 0.15:

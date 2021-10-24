@@ -73,6 +73,7 @@ def zone_dropoff(colour):
     Function that returns the robot configuration for each drop off zone
     depending on the colour of the block
     """
+    # Predefine zone areas
     zone1 = np.array([1.8, -0.8, -0.8, 0,1.5, 0.75, 0.5, 0.75])
     zone2 = np.array([-0.35, 1, 2, 0,1.5, 0.75, 0.75, 0.75])
     zone3 = np.array([0.35, 1, 2, 0,1.5, 0.75, 0.75, 0.75])
@@ -86,7 +87,7 @@ def zone_dropoff(colour):
     if colour == 3: #green
         print("Moving to zone 3")
         return zone3
-    if colour == 0: #blue
+    if colour == 4: #blue
         print("Moving to zone 4")
         return zone4
     else:
@@ -102,10 +103,12 @@ def zone_dropoff(colour):
 
 if __name__ == '__main__':
     rospy.init_node('main_robot_loop',anonymous=True)
+    # Ensure gripper is working
     step.close_stepper()
     rate = rospy.Rate(0.5) # 10hz
     rate.sleep()
     step.open_stepper()
+    # Main loop
     while not rospy.is_shutdown():
         if not cam.turntable_move():
             desired_pos = k.desired_angle_config(Slist, M, thetalist)

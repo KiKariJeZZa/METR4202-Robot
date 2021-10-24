@@ -1,6 +1,8 @@
 """
 Color detector using OpenCV and Ximea Camera
 Author: Miguel Valencia
+
+DID NOT USE THIS CODE
 """
 
 import cv2

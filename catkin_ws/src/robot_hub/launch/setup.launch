@@ -1,5 +1,6 @@
 <launch>    
 <node pkg="ximea_ros_cam" type="ximea_ros_cam_node" name="ximea_cam" output="screen">
+        <param name="usb_limits" command="echo 0 | sudo tee /sys/module/usbcore/parameters/usbfs_memory_mb" />
         <param name="serial_no"       type="string" value="32702251" />
         <param name="cam_name"        type="string" value="ximea_cam" />
         <param name="calib_file"      type="string" value=""         />

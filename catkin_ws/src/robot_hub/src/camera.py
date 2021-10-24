@@ -21,12 +21,11 @@ def turntable_move():
     Logic that should return whether the turn table is in motion
     """
     # Just check if one block is moving by comparing their x values
-    #rospy.init_node('turntable_logic')
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
+    # Ensure at least one fiducial is being read
     if len(data.transforms) >= 1:
         x_array = [0, 0]
         i = 0
-        #print(data.transforms[0].transform.translation.y)
         x_array[i] = data.transforms[0].transform.translation.y
         if len(data.transforms) >= 1:
             i = 1
@@ -51,9 +50,9 @@ def closest_block():
     """
     Logic that returns the closest block to the robot
     """
-    #rospy.init_node('closest_block')
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
     if len(data.transforms) >= 1:
+        # Store an array and check the closest to the robot
         for i in range(len(data.transforms)):
             x_array = [0 for i in range(len(data.transforms))]
             x_array[i] = data.transforms[i].transform.translation.y
@@ -74,7 +73,7 @@ def get_xyz():
     Function that returns x y z coordinates of fiducial marker
     Mainly used to calibrate where robot is compared to camera
     """
-    rospy.init_node('closest_xyz', anonymous=True)
+    #rospy.init_node('closest_xyz', anonymous=True)
     data = rospy.wait_for_message("fiducial_transforms", FiducialTransformArray)
     if len(data.transforms) >= 1:
         print("Detecting fiducials")
