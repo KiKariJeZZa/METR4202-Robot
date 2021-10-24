@@ -13,3 +13,6 @@ roslaunch robot_hub setup.launch
 ```
 roslaunch robot_hub robot_hub.launch
 ```
+
+## Our beautiful revolute boi
+![alt text](https://github.com/KiKariJeZZa/main/Robot.jpg)
