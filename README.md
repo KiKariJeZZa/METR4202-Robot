@@ -15,4 +15,4 @@ roslaunch robot_hub robot_hub.launch
 ```
 
 ## Our beautiful revolute boi
-![alt text](https://github.com/KiKariJeZZa/main/Robot.jpg)
+![alt text](https://github.com/KiKariJeZZa/METR4202-Robot/blob/main/Robot.jpg)
