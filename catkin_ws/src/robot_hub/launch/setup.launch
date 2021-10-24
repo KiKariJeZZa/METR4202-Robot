@@ -1,4 +1,4 @@
-<launch>
+<launch>    
 <node pkg="ximea_ros_cam" type="ximea_ros_cam_node" name="ximea_cam" output="screen">
         <param name="serial_no"       type="string" value="32702251" />
         <param name="cam_name"        type="string" value="ximea_cam" />
@@ -39,12 +39,4 @@
         to="$(arg camera)/$(arg image)/$(arg transport)"/>
     <remap from="camera_info" to="$(arg camera)/camera_info"/>
   </node>
-    <!-- Dynamixel Launch Node-->
-    <node name="dynamixel_interface_node" pkg="dynamixel_interface" type="dynamixel_interface_controller_node" output="screen">
-    <rosparam command="load" file="$(find dynamixel_interface)/config/controller_config.yaml" />
-  </node>
-    <!-- My Package launch file -->
-    <node pkg="robot_hub" type="main.py" name="main_loop"  output="screen">
-  </node>
-
 </launch>

@@ -9,11 +9,12 @@ import os
 from math import *
 from numpy.core.fromnumeric import argmin, argmax
 from ximea import xiapi
+import rospy
 
-'''
+
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
-'''
+
 
 MOUSE_LEFT = 1
 class ColorDetector:
@@ -147,10 +148,12 @@ def demo():
     cam.set_imgdataformat('XI_RGB24')
     cam.disable_auto_wb()
     cam.start_acquisition()
+    rospy.init_node('colour_detect')
+    data = rospy.wait_for_message("ximea_cam/image_raw", Image)
     cam_img = xiapi.Image()
     
     # Setup image as empty numpy array
-    image = np.zeros((cam.get_height(), cam.get_width(), 3), dtype=np.uint8)
+    image = np.zeros((1024, 1280, 3), dtype=np.uint8)
 
     # Create a window named Image
     cv2.namedWindow('Image')

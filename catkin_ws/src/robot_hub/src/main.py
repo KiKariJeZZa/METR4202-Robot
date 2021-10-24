@@ -15,6 +15,7 @@ import numpy as np
 import kinematics as k
 import stepper as step
 import camera as cam
+import random
 
 # Declare variables for the robot
 joint2_offset = 1.5
@@ -36,7 +37,6 @@ def move_servo(state_str):
     #rospy.init_node('main_robot_loop',anonymous=True)
     servo_publisher = rospy.Publisher('/desired_joint_states', JointState, queue_size = 10)
     rate = rospy.Rate(10) # 10hz
-    print("Moving to desired position")
     count = 0
     while count < 50:
         state_str.header.stamp = rospy.Time.now()
@@ -51,7 +51,6 @@ def trajectory_message(des_pos):
     Function that controls and takes into consideration the velocity limits of
     each command wanting to move the arm
     """
-    #rospy.init_node('main_robot_loop',anonymous=True)
     # Build the required string needed to send to the topic
     state_str = JointState()
     state_str.header = Header()
@@ -79,12 +78,16 @@ def zone_dropoff(colour):
     zone3 = np.array([0.35, 1, 2, 0,1.5, 0.75, 0.75, 0.75])
     zone4 = np.array([-1.8, -0.8, -0.8, 0,1.5, 0.75, 0.75, 0.75])
     if colour == 1: #red
+        print("Moving to zone 1")
         return zone1
     if colour == 2: #yellow
+        print("Moving to zone 2")
         return zone2
     if colour == 3: #green
+        print("Moving to zone 3")
         return zone3
-    if colour == 4: #blue
+    if colour == 0: #blue
+        print("Moving to zone 4")
         return zone4
     else:
         return zone2
@@ -98,28 +101,26 @@ def zone_dropoff(colour):
 # ---------
 
 if __name__ == '__main__':
+    rospy.init_node('main_robot_loop',anonymous=True)
+    step.close_stepper()
+    rate = rospy.Rate(0.5) # 10hz
+    rate.sleep()
+    step.open_stepper()
     while not rospy.is_shutdown():
         if not cam.turntable_move():
-            #move_servo(trajectory_message(k.desired_angle_config(Slist, M, thetalist)))
-            print("Closing...")
-            step.close_stepper()
-            rate = rospy.Rate(0.5) # 10hz
-            rate.sleep()
-            #move_servo(trajectory_message(zero_position()))
-            #move_servo(trajectory_message(zone_dropoff(1)))
-            print("Opening...")
-            step.open_stepper()
-            rate.sleep()
-            #move_servo(trajectory_message(zero_position()))
-    #blocks_left = 4
-    #while blocks != 0:
-        #blocks_left = blocks_left - 1
-        #move_servo(k.desired_angle_config(Slist, M, thetalist))
-    #step.close_stepper()
-    #rate = rospy.Rate(0.5) # 10hz
-    #rate.sleep()
-        #move_servo(zero_position())
-    #move_servo(zone_dropoff())
-    #step.open_stepper()
-    #rate.sleep()
-    #move_servo(zero_position())
+            desired_pos = k.desired_angle_config(Slist, M, thetalist)
+            if desired_pos.all() == 0:
+                pass # do nothing
+            else:
+                move_servo(trajectory_message(desired_pos))
+                print("Closing...")
+                step.close_stepper()
+                rate = rospy.Rate(0.5) # 10hz
+                rate.sleep()
+                move_servo(trajectory_message(zero_position()))
+                move_servo(trajectory_message(zone_dropoff(random.randint(1,4))))
+                print("Opening...")
+                step.open_stepper()
+                rate.sleep()
+                move_servo(trajectory_message(zero_position()))
+

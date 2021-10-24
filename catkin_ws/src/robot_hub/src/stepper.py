@@ -7,9 +7,13 @@
 # Written by Nadia Regli
 # ------------------------------
 
+# Import dependenceies
 import serial
 
 def open_stepper():
+    """
+    Function that opens the end effector
+    """
     ser = serial.Serial('/dev/ttyACM0', 9600)
     ser.flush()
 
@@ -19,6 +23,9 @@ def open_stepper():
 
 
 def close_stepper():
+    """
+    Function that closes the end effector
+    """
     ser = serial.Serial('/dev/ttyACM0', 9600)
     ser.flush()
 
